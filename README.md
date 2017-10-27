@@ -31,6 +31,8 @@ matrix()
 ```
   transform: matrix(a,b,c,d,e,f);
 ```
+![image](https://github.com/sysuzhyupeng/css-3d/raw/master/resources/img/matrix.gif)
+
 x, y表示元素的初始坐标。ax+cy+e和bx+dy+f则是通过矩阵变换后得到新的坐标。
 
 实际上transform: matrix(1, 0, 0, 1, 30, 30);就等同于transform: translate(30px, 30px);
