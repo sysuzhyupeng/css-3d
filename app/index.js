@@ -1,1 +1,1 @@
-var a = 1;
+require('../resources/less/index.less');
