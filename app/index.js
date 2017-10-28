@@ -39,7 +39,7 @@ require('../resources/less/index.less');
 */
 
 /*
-	TweenJS Javascript库提供了一个简单但强大的渐变界面。
+	TweenJS用来做动画。
 	target.alpha = 0;
     createjs.Tween.get(target).to({alpha:1}, 1000).call(handleComplete);
     function handleComplete() {
@@ -166,7 +166,7 @@ var table = [
 	"Uus", "Ununseptium", "(294)", 17, 7,
 	"Uuo", "Ununoctium", "(294)", 18, 7
 ];
-
+//照相机、场景、渲染器
 var camera, scene, renderer;
 var controls;
 
@@ -188,7 +188,7 @@ init();
 animate();
 
 function init() {
-
+	//远景投影，透视投影
 	camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 10000 );
 	camera.position.z = 3000;
 
@@ -197,7 +197,7 @@ function init() {
 	// table
 
 	for ( var i = 0; i < table.length; i += 5 ) {
-
+		//每五个数组元素为一组
 		var element = document.createElement( 'div' );
 		element.className = 'element';
 		element.style.backgroundColor = 'rgba(0,127,127,' + ( Math.random() * 0.5 + 0.25 ) + ')';
@@ -214,10 +214,13 @@ function init() {
 
 		var details = document.createElement( 'div' );
 		details.className = 'details';
+		//拼接div内容
 		details.innerHTML = table[ i + 1 ] + '<br>' + table[ i + 2 ];
 		element.appendChild( details );
 
-		var object = new THREE.CSS3DObject( element );
+		var object = new THREE.CSS3DObject(element);
+
+		//x,y,z在[-2000, 2000]的范围
 		object.position.x = Math.random() * 4000 - 2000;
 		object.position.y = Math.random() * 4000 - 2000;
 		object.position.z = Math.random() * 4000 - 2000;
@@ -228,6 +231,13 @@ function init() {
 		//设置3d对象的x和y
 
 		var object = new THREE.Object3D();
+		/*
+			第4个数字*140 - 1330，110 = 140 * 9.5
+			第5个数字*180 + 990，
+
+			每个div 宽是120
+			高是140
+		*/
 		object.position.x = ( table[ i + 3 ] * 140 ) - 1330;
 		object.position.y = - ( table[ i + 4 ] * 180 ) + 990;
 
@@ -240,19 +250,39 @@ function init() {
 
 	//三维向量。
 	var vector = new THREE.Vector3();
-
+	//球形构造
 	var spherical = new THREE.Spherical();
-
+	console.log(111, objects)
+	/*
+		objects为
+		{
+			uuid: "D49FA24D-18BD-4AAB-A22C-7607F59B0605", 
+			name: "", type: "Object3D", 
+			parent: Scene, 
+			children: Array(0), 
+			postion:  {
+				x: 824.9152828032065, 
+				y: 79.82525544143027, 
+				z: 1587.4256826429
+			}
+		}
+	*/
 	for ( var i = 0, l = objects.length; i < l; i ++ ) {
 		//获得反cos的角度
 		var phi = Math.acos( -1 + ( 2 * i ) / l );
-		
+
 		//Math.sqrt(9); // 3
 		//l*PI开平方乘角度
 		var theta = Math.sqrt( l * Math.PI ) * phi;
 
 		var object = new THREE.Object3D();
-
+		console.log('phi= '+ phi, 'theta= '+theta)
+		/*
+			Spherical( radius, phi, theta )
+			radius设置半径
+			phi两极的角度
+			theta赤道的角度
+		*/
 		spherical.set( 800, phi, theta );
 
 		object.position.setFromSpherical( spherical );
@@ -265,45 +295,45 @@ function init() {
 
 	}
 
-	// helix
+	// // helix
 
-	var vector = new THREE.Vector3();
-	var cylindrical = new THREE.Cylindrical();
+	// var vector = new THREE.Vector3();
+	// var cylindrical = new THREE.Cylindrical();
 
-	for ( var i = 0, l = objects.length; i < l; i ++ ) {
+	// for ( var i = 0, l = objects.length; i < l; i ++ ) {
 
-		var theta = i * 0.175 + Math.PI;
-		var y = - ( i * 8 ) + 450;
+	// 	var theta = i * 0.175 + Math.PI;
+	// 	var y = - ( i * 8 ) + 450;
 
-		var object = new THREE.Object3D();
+	// 	var object = new THREE.Object3D();
 
-		cylindrical.set( 900, theta, y );
+	// 	cylindrical.set( 900, theta, y );
 
-		object.position.setFromCylindrical( cylindrical );
+	// 	object.position.setFromCylindrical( cylindrical );
 
-		vector.x = object.position.x * 2;
-		vector.y = object.position.y;
-		vector.z = object.position.z * 2;
+	// 	vector.x = object.position.x * 2;
+	// 	vector.y = object.position.y;
+	// 	vector.z = object.position.z * 2;
 
-		object.lookAt( vector );
+	// 	object.lookAt( vector );
 
-		targets.helix.push( object );
+	// 	targets.helix.push( object );
 
-	}
+	// }
 
-	// grid
+	// // grid
 
-	for ( var i = 0; i < objects.length; i ++ ) {
+	// for ( var i = 0; i < objects.length; i ++ ) {
 
-		var object = new THREE.Object3D();
+	// 	var object = new THREE.Object3D();
 
-		object.position.x = ( ( i % 5 ) * 400 ) - 800;
-		object.position.y = ( - ( Math.floor( i / 5 ) % 5 ) * 400 ) + 800;
-		object.position.z = ( Math.floor( i / 25 ) ) * 1000 - 2000;
+	// 	object.position.x = ( ( i % 5 ) * 400 ) - 800;
+	// 	object.position.y = ( - ( Math.floor( i / 5 ) % 5 ) * 400 ) + 800;
+	// 	object.position.z = ( Math.floor( i / 25 ) ) * 1000 - 2000;
 
-		targets.grid.push( object );
+	// 	targets.grid.push( object );
 
-	}
+	// }
 
 	//
 
@@ -312,20 +342,20 @@ function init() {
 	renderer.domElement.style.position = 'absolute';
 	document.getElementById( 'container' ).appendChild( renderer.domElement );
 
-	//
+	//控制器，控制交互
 
 	controls = new THREE.TrackballControls( camera, renderer.domElement );
 	controls.rotateSpeed = 0.5;
+	//设定远近距离
 	controls.minDistance = 500;
 	controls.maxDistance = 6000;
-	controls.addEventListener( 'change', render );
+	controls.addEventListener( 'change', render);
 
-	var button = document.getElementById( 'table' );
-	button.addEventListener( 'click', function ( event ) {
+	// var button = document.getElementById( 'table' );
+	// button.addEventListener( 'click', function ( event ) {
+	// 	transform( targets.table, 2000 );
 
-		transform( targets.table, 2000 );
-
-	}, false );
+	// }, false );
 
 	var button = document.getElementById( 'sphere' );
 	button.addEventListener( 'click', function ( event ) {
@@ -334,19 +364,19 @@ function init() {
 
 	}, false );
 
-	var button = document.getElementById( 'helix' );
-	button.addEventListener( 'click', function ( event ) {
+	// var button = document.getElementById( 'helix' );
+	// button.addEventListener( 'click', function ( event ) {
 
-		transform( targets.helix, 2000 );
+	// 	transform( targets.helix, 2000 );
 
-	}, false );
+	// }, false );
 
-	var button = document.getElementById( 'grid' );
-	button.addEventListener( 'click', function ( event ) {
+	// var button = document.getElementById( 'grid' );
+	// button.addEventListener( 'click', function ( event ) {
 
-		transform( targets.grid, 2000 );
+	// 	transform( targets.grid, 2000 );
 
-	}, false );
+	// }, false );
 
 	// transform( targets.table, 2000 );
 
@@ -355,13 +385,13 @@ function init() {
 	window.addEventListener( 'resize', onWindowResize, false );
 
 }
-//核心函数
 function transform( targets, duration ) {
-	//TweenJS Javascript库提供了一个简单但强大的渐变界面
 	TWEEN.removeAll();
-
 	for ( var i = 0; i < objects.length; i ++ ) {
-
+		/*
+			从目前位置移动到
+			target的位置
+		*/
 		var object = objects[ i ];
 		var target = targets[ i ];
 
@@ -404,9 +434,7 @@ function animate() {
 	controls.update();
 
 }
-
+//渲染函数，调用时重新渲染
 function render() {
-
 	renderer.render( scene, camera );
-
 }
