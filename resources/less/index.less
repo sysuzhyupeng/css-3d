@@ -1,5 +1,132 @@
 ﻿@import "_reset.less";
 
-body {
-  background : #fff;
+
+* {
+	box-sizing: border-box;
 }
+
+html {
+	height: 100%;
+}
+
+body {
+	background-color: #ffffff;
+	margin: 0px;
+	height: 100%;
+	color: #555;
+	font-size: 15px;
+	line-height: 18px;
+	overflow: hidden;
+}
+
+h1 {
+	margin-top: 30px;
+	margin-bottom: 40px;
+	margin-left: 20px;
+	font-size: 25px;
+	font-weight: normal;
+}
+
+h2 {
+	font-size: 20px;
+	font-weight: normal;
+}
+
+a {
+	color: #2194CE;
+	text-decoration: none;
+}
+
+
+html, body {
+	height: 100%;
+}
+
+body {
+	background-color: #000000;
+	margin: 0;
+	font-family: Helvetica, sans-serif;;
+	overflow: hidden;
+}
+
+a {
+	color: #ffffff;
+}
+
+#info {
+	position: absolute;
+	width: 100%;
+	color: #ffffff;
+	padding: 5px;
+	font-family: Monospace;
+	font-size: 13px;
+	font-weight: bold;
+	text-align: center;
+	z-index: 1;
+}
+
+#menu {
+	position: absolute;
+	bottom: 20px;
+	width: 100%;
+	text-align: center;
+}
+
+.element {
+	width: 120px;
+	height: 160px;
+	box-shadow: 0px 0px 12px rgba(0,255,255,0.5);
+	border: 1px solid rgba(127,255,255,0.25);
+	text-align: center;
+	cursor: default;
+}
+
+.element:hover {
+	box-shadow: 0px 0px 12px rgba(0,255,255,0.75);
+	border: 1px solid rgba(127,255,255,0.75);
+}
+
+	.element .number {
+		position: absolute;
+		top: 20px;
+		right: 20px;
+		font-size: 12px;
+		color: rgba(127,255,255,0.75);
+	}
+
+	.element .symbol {
+		position: absolute;
+		top: 40px;
+		left: 0px;
+		right: 0px;
+		font-size: 60px;
+		font-weight: bold;
+		color: rgba(255,255,255,0.75);
+		text-shadow: 0 0 10px rgba(0,255,255,0.95);
+	}
+
+	.element .details {
+		position: absolute;
+		bottom: 15px;
+		left: 0px;
+		right: 0px;
+		font-size: 12px;
+		color: rgba(127,255,255,0.75);
+	}
+
+button {
+	color: rgba(127,255,255,0.75);
+	background: transparent;
+	outline: 1px solid rgba(127,255,255,0.75);
+	border: 0px;
+	padding: 5px 10px;
+	cursor: pointer;
+}
+button:hover {
+	background-color: rgba(0,255,255,0.5);
+}
+button:active {
+	color: #000000;
+	background-color: rgba(0,255,255,0.75);
+}
+
