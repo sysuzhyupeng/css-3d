@@ -71,7 +71,7 @@ matrix3d
 
 scale3d(sx,sy,sz)等价于matrix3d(sx,0,0,0,0,sy,0,0,0,0,sz,0,0,0,0,1)
 
-rotate到css3d的变化会比较复杂。
+rotate到matrix3d的变化会比较复杂。
 
 determinant
 -
