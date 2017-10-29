@@ -57,9 +57,14 @@ x, y表示元素的初始坐标。ax+cy+e和bx+dy+f则是通过矩阵变换后�
 
 镜相对称
 -
-假设对称轴为y=kx直线，那么以这条直线对称的图形matrix为
+假设对称轴为y=kx直线，那么以这条直线对称的图形matrix就转化为
 
-(已知x,y,x', y')求矩阵。
+(已知x,y,x', y')求矩阵的问题。
+
+matrix3d
+-
+`translate3d(tx,ty,tz)`等价于`matrix3d(1,0,0,0,0,1,0,0,0,0,1,0,tx,ty,tz,1)`
+
 
 three.js
 -
