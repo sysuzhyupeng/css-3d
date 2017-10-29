@@ -67,7 +67,17 @@ matrix3d
 -
 `translate3d(tx,ty,tz)`等价于`matrix3d(1,0,0,0,0,1,0,0,0,0,1,0,tx,ty,tz,1)`
 
+![image](https://github.com/sysuzhyupeng/css-3d/raw/master/resources/img/matrix3d.jpg)
+
 scale3d(sx,sy,sz)等价于matrix3d(sx,0,0,0,0,sy,0,0,0,0,sz,0,0,0,0,1)
+
+rotate到css3d的变化会比较复杂。
+
+determinant
+-
+Matrix3D 对象必须是可逆的。可以使用 determinant 属性确保 Matrix3D 对象是可逆的。
+
+(若存在另一个矩阵B使得A * B = E，E为单位阵，则称A为可逆阵)
 
 
 
