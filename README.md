@@ -27,7 +27,9 @@ transform与坐标系统
 
 matrix()
 -
-`transform`属性的`matrix()`方法具体参数如下：
+图像的变形是把图像中每个位置的像素点乘以一个仿射矩阵，到达另外一个位置，最后把变换后的所有像素点组合起来。
+
+matrix()表示2D变换，`transform`属性的`matrix()`方法具体参数如下：
 ```
   transform: matrix(a,b,c,d,e,f);
 ```
@@ -64,6 +66,10 @@ x, y表示元素的初始坐标。ax+cy+e和bx+dy+f则是通过矩阵变换后�
 matrix3d
 -
 `translate3d(tx,ty,tz)`等价于`matrix3d(1,0,0,0,0,1,0,0,0,0,1,0,tx,ty,tz,1)`
+
+scale3d(sx,sy,sz)等价于matrix3d(sx,0,0,0,0,sy,0,0,0,0,sz,0,0,0,0,1)
+
+
 
 
 three.js
