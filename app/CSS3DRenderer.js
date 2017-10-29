@@ -8,10 +8,11 @@ THREE.CSS3DObject = function ( element ) {
 	THREE.Object3D.call( this );
 
 	this.element = element;
+	//元素设置成绝对定位
 	this.element.style.position = 'absolute';
 
 	this.addEventListener( 'removed', function () {
-
+		//当CSS3DObject触发removed事件的时候，把元素移除
 		if ( this.element.parentNode !== null ) {
 
 			this.element.parentNode.removeChild( this.element );
@@ -22,6 +23,7 @@ THREE.CSS3DObject = function ( element ) {
 
 };
 
+//获得object3d上的方法
 THREE.CSS3DObject.prototype = Object.create( THREE.Object3D.prototype );
 THREE.CSS3DObject.prototype.constructor = THREE.CSS3DObject;
 
